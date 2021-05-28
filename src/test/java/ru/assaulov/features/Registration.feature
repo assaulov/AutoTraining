@@ -1,5 +1,4 @@
-# new feature
-# Tags: optional
+
 
 Feature: Регистрация нового пользователя на сайте
 
@@ -16,8 +15,8 @@ Feature: Регистрация нового пользователя на са�
     | Mr. | Mark     | Avrelii  | merk.avr@frnla.com | 12345    | 01.01.1971  |
     When Заполнить поля YOUR ADDRESS следующими данными:
     |  Company       |  Address        |City      | State | Zip/Postal Code | Country       | Mobile phone |Assign an address alias for future reference|
-    |  Some Company  |  some street 1  |City Name | Alabama | 12345          | United States | 999999999     |My address                                 |
-    Then Открается страница ' My account'
+    |  Some Company  |  some street 1  |City Name | Alabama | 12345          | United States | 999999999   |My address                                  |
+    Then Открается страница 'My account'
 
 
 
