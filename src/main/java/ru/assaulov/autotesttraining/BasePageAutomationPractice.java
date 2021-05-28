@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+
 public class BasePageAutomationPractice {
 
     protected WebDriver chromeDriver;
@@ -25,10 +26,10 @@ public class BasePageAutomationPractice {
         searchBar.sendKeys(itemToSearch);
     }
 
-    public void clickSpanButton(String buttonName){
-        String selectorButtonWithSpan = "//span[text()='"+ buttonName+ "']/..";
+    public void clickSubmitButton(String buttonName){
+        String selectorButtonWithSpan = "//button[@type='submit' and contains(., '"+buttonName+"')]";
         WebElement buttonWithSpan = chromeDriver.findElement(By.xpath(selectorButtonWithSpan));
-        buttonWithSpan.click();
+       buttonWithSpan.click();
     }
 
     public void clickHrefButton(String buttonName) {

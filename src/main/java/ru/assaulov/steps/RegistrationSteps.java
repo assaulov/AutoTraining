@@ -13,6 +13,7 @@ public class RegistrationSteps {
         accountPage.clickHrefButton(buttonName);
     }
 
+
     @Step
     public static void isRightPageOpen(CreateAccountPage accountPage, String expectedPage){
         String actualPage = accountPage.getNamePage().getText();
@@ -20,8 +21,14 @@ public class RegistrationSteps {
     }
 
     @Step
+    public static void isCreatePageOpen(CreateAccountPage accountPage, String expectedPage){
+        String actualPage = accountPage.getCreatePage().getText();
+        Assertions.assertEquals(expectedPage, actualPage);
+    }
+
+    @Step
     public static void clickCreateAnAccountButton(CreateAccountPage accountPage, String buttonName){
-        accountPage.clickSpanButton(buttonName);
+        accountPage.clickSubmitButton(buttonName);
     }
 
     @Step
@@ -94,6 +101,9 @@ public class RegistrationSteps {
         accountPage.inputDataInField(formName,fieldName,address.getAddressAlias());
     }
 
-
+    @Step
+    public static void clickRegisterButton(CreateAccountPage accountPage, String buttonName){
+        accountPage.clickSubmitButton(buttonName);
+    }
 
 }

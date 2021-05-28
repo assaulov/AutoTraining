@@ -8,7 +8,8 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         plugin = {"io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm", "pretty", "json:target/cucumber-report/report.json"},
         features = "src/test/java/ru/assaulov/features",
-        glue = "ru.assaulov.stepdefs"
+        glue = "ru.assaulov.stepdefs",
+        tags = "@registration"
 )
 public class CucumberRunner {
 }

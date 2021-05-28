@@ -3,7 +3,9 @@ package ru.assaulov.autotesttraining;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CreateAccountPage extends AuthenticationPage{
 
@@ -13,6 +15,14 @@ public class CreateAccountPage extends AuthenticationPage{
         super(chromeDriver, waitSeconds);
     }
 
+    public WebElement getCreatePage() {
+        webDriverWait.until(ExpectedConditions.urlContains("#account-creation"));
+        String namePageSelector = "//h1[@class='page-heading']";
+        WebElement namePage =new WebDriverWait(chromeDriver, 30).until(ExpectedConditions.visibilityOf((chromeDriver.findElement(By.xpath(namePageSelector)))));
+        if(namePage.isDisplayed())
+            return namePage;
+        return null;
+    }
     public void setGender(String gender){
         String selectorGenderRadioButton = "//form[contains(*,'Your personal information')]//div[@class='radio-inline']//input[@value="+defineGender(gender)+"]";
         WebElement genderButton = chromeDriver.findElement(By.xpath(selectorGenderRadioButton));
@@ -25,9 +35,9 @@ public class CreateAccountPage extends AuthenticationPage{
         String selectorDays= "//select[@name='days']";
         String selectorMonths = "//select[@name='months']";
         String selectorYears = "//select[@name='years']";
-        selectFactory(selectorDivDateOfBirth+selectorDays).selectByVisibleText(dataOfBirthSplit[0]);
-        selectFactory(selectorDivDateOfBirth+selectorMonths).selectByVisibleText(dataOfBirthSplit[1]);
-        selectFactory(selectorDivDateOfBirth+selectorYears).selectByVisibleText(dataOfBirthSplit[2]);
+        selectFactory(selectorDivDateOfBirth+selectorDays).selectByValue(dataOfBirthSplit[0]);
+        selectFactory(selectorDivDateOfBirth+selectorMonths).selectByValue(dataOfBirthSplit[1]);
+        selectFactory(selectorDivDateOfBirth+selectorYears).selectByValue(dataOfBirthSplit[2]);
     }
 
     public void setState(String state){
