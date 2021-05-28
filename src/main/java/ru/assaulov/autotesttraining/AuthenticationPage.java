@@ -21,7 +21,7 @@ public class AuthenticationPage extends BasePageAutomationPractice {
     }
 
     public void inputDataInField(String formName, String fieldName, String data){
-        String selectorField = String.format("//form[contains(div,'%s')]//label[contains(text(), '%s')]/following-sibling::input", formName, fieldName);
+        String selectorField = String.format("//form[contains(*,'%s')]//label[contains(text(), '%s')]/following-sibling::input", formName, fieldName);
         inputField = chromeDriver.findElement(By.xpath(selectorField));
         inputField.sendKeys(data);
     }
