@@ -8,16 +8,15 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class BasePageAutomationPractice {
 
     protected WebDriver chromeDriver;
-
-    public WebDriver getChromeDriver() {
-        return chromeDriver;
-    }
-
     protected WebDriverWait webDriverWait;
 
     public BasePageAutomationPractice(WebDriver chromeDriver, int waitSeconds) {
         this.chromeDriver = chromeDriver;
         this.webDriverWait = new WebDriverWait(chromeDriver, waitSeconds);
+    }
+
+    public WebDriver getChromeDriver() {
+        return chromeDriver;
     }
 
     public void search(String itemToSearch){
