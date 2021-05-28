@@ -26,9 +26,15 @@ public class BasePageAutomationPractice {
         searchBar.sendKeys(itemToSearch);
     }
 
-    public void clickButton(String buttonName){
+    public void clickSpanButton(String buttonName){
         String selectorButtonWithSpan = "//span[text()='"+ buttonName+ "']/..";
         WebElement buttonWithSpan = chromeDriver.findElement(By.xpath(selectorButtonWithSpan));
         buttonWithSpan.click();
+    }
+
+    public void clickHrefButton(String buttonName) {
+        String selectorButtonWithHref = "//a[contains(text(),'"+ buttonName+"')]";
+        WebElement buttonWithHref = chromeDriver.findElement(By.xpath(selectorButtonWithHref));
+        buttonWithHref.click();
     }
 }
