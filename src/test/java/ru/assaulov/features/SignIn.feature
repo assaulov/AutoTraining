@@ -5,7 +5,7 @@ Feature: Вход существущим пользователем
         Given Главная страница сайта 'http://automationpractice.com/'
         When Нажать кнопку 'Sign in'
         Then Откроется страница 'Authentication'
-  Scenario: Вход в систему
+    Scenario: Вход в систему
       When В поля <Email address> и <Password> ввести данные:
           |         Email        | Password |
           | pojofoy474@frnla.com | 12345    |
