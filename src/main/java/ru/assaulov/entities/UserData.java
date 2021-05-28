@@ -12,13 +12,8 @@ public class UserData {
     private String dateOfBirth;
     private Map<UserData, List<UserAddress>> addresses;
 
-    public UserData(String title, String firstName, String lastName, String email, String password, String dateOfBirth) {
-        this.title = title;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.dateOfBirth = dateOfBirth;
+    public UserData() {
+
     }
 
     public String getTitle() {

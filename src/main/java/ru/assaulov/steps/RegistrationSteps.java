@@ -20,11 +20,6 @@ public class RegistrationSteps {
     }
 
     @Step
-    public static void enterEmailForRegistration(CreateAccountPage accountPage, String formName, String fieldName, String email) {
-        accountPage.inputDataInField(formName, fieldName,email);
-    }
-
-    @Step
     public static void clickCreateAnAccountButton(CreateAccountPage accountPage, String buttonName){
         accountPage.clickSpanButton(buttonName);
     }
@@ -50,7 +45,7 @@ public class RegistrationSteps {
     }
 
     @Step
-    public static void setPassworn(CreateAccountPage accountPage,String formName, String fieldName, UserData user){
+    public static void setPassword(CreateAccountPage accountPage, String formName, String fieldName, UserData user){
         accountPage.inputDataInField(formName,fieldName,user.getPassword());
     }
 
@@ -95,7 +90,7 @@ public class RegistrationSteps {
     }
 
     @Step
-    public static void seaAlias(CreateAccountPage accountPage,String formName, String fieldName, UserAddress address){
+    public static void setAlias(CreateAccountPage accountPage,String formName, String fieldName, UserAddress address){
         accountPage.inputDataInField(formName,fieldName,address.getAddressAlias());
     }
 
