@@ -1,0 +1,64 @@
+package ru.assaulov.autotesttraining;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
+
+public class CreateAccountPage extends AuthenticationPage{
+
+    private final String selectorNamePage = "//h1[text()='Create an account']";
+
+    private final WebElement namePage;
+
+    public CreateAccountPage(WebDriver chromeDriver, int waitSeconds) {
+        super(chromeDriver, waitSeconds);
+        this.namePage = chromeDriver.findElement(By.xpath(selectorNamePage));
+    }
+
+    @Override
+    public WebElement getNamePage() {
+        return namePage;
+    }
+
+    public void setGender(String gender){
+        String selectorGenderRadioButton = "//form[contains(*,'Your personal information')]//div[@class='radio-inline']//input[@value="+defineGender(gender)+"]";
+        WebElement genderButton = chromeDriver.findElement(By.xpath(selectorGenderRadioButton));
+        genderButton.click();
+    }
+
+    public void setDateOfBirth(String dateOfBirth){
+        String[] dataOfBirthSplit = dateOfBirth.split("\\.");
+        String selectorDivDateOfBirth = "//div[contains(label, 'Date of Birth')]";
+        String selectorDays= "//select[@name='days']";
+        String selectorMonths = "//select[@name='months']";
+        String selectorYears = "//select[@name='years']";
+        selectFactory(selectorDivDateOfBirth+selectorDays).selectByVisibleText(dataOfBirthSplit[0]);
+        selectFactory(selectorDivDateOfBirth+selectorMonths).selectByVisibleText(dataOfBirthSplit[1]);
+        selectFactory(selectorDivDateOfBirth+selectorYears).selectByVisibleText(dataOfBirthSplit[2]);
+    }
+
+    public void setState(String state){
+        String selectorStateField = "//select[@name='id_state']";
+        selectFactory(selectorStateField).selectByVisibleText(state);
+    }
+
+    public void setCountry(String country){
+        String selectorCountry = "//select[@name='id_country']";
+        selectFactory(selectorCountry).selectByVisibleText(country);
+    }
+
+    private Select selectFactory(String selector){
+        WebElement selectorElement = chromeDriver.findElement(By.xpath(selector));
+        return new Select(selectorElement);
+    }
+
+    private int defineGender(String gender) {
+        if(gender.equalsIgnoreCase("mr.")){
+            return 1;
+        } else if(gender.equalsIgnoreCase("mrs.")) {
+            return 2;
+        }
+        return 1;
+    }
+}
