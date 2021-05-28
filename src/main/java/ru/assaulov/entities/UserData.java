@@ -1,9 +1,7 @@
 package ru.assaulov.entities;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 public class UserData {
     private String title;
@@ -11,10 +9,10 @@ public class UserData {
     private String lastName;
     private String email;
     private String password;
-    private LocalDate dateOfBirth;
+    private String dateOfBirth;
     private Map<UserData, List<UserAddress>> addresses;
 
-    public UserData(String title, String firstName, String lastName, String email, String password, LocalDate dateOfBirth) {
+    public UserData(String title, String firstName, String lastName, String email, String password, String dateOfBirth) {
         this.title = title;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -63,11 +61,11 @@ public class UserData {
         this.password = password;
     }
 
-    public LocalDate getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 

@@ -7,18 +7,10 @@ import org.openqa.selenium.support.ui.Select;
 
 public class CreateAccountPage extends AuthenticationPage{
 
-    private final String selectorNamePage = "//h1[text()='Create an account']";
 
-    private final WebElement namePage;
 
     public CreateAccountPage(WebDriver chromeDriver, int waitSeconds) {
         super(chromeDriver, waitSeconds);
-        this.namePage = chromeDriver.findElement(By.xpath(selectorNamePage));
-    }
-
-    @Override
-    public WebElement getNamePage() {
-        return namePage;
     }
 
     public void setGender(String gender){
