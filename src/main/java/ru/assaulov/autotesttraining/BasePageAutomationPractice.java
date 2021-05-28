@@ -5,19 +5,19 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+
 public class BasePageAutomationPractice {
 
     protected WebDriver chromeDriver;
-
-    public WebDriver getChromeDriver() {
-        return chromeDriver;
-    }
-
     protected WebDriverWait webDriverWait;
 
     public BasePageAutomationPractice(WebDriver chromeDriver, int waitSeconds) {
         this.chromeDriver = chromeDriver;
         this.webDriverWait = new WebDriverWait(chromeDriver, waitSeconds);
+    }
+
+    public WebDriver getChromeDriver() {
+        return chromeDriver;
     }
 
     public void search(String itemToSearch){
@@ -26,9 +26,15 @@ public class BasePageAutomationPractice {
         searchBar.sendKeys(itemToSearch);
     }
 
-    public void clickButton(String buttonName){
-        String selectorButtonWithSpan = "//span[text()='"+ buttonName+ "']/..";
+    public void clickSubmitButton(String buttonName){
+        String selectorButtonWithSpan = "//button[@type='submit' and contains(., '"+buttonName+"')]";
         WebElement buttonWithSpan = chromeDriver.findElement(By.xpath(selectorButtonWithSpan));
-        buttonWithSpan.click();
+       buttonWithSpan.click();
+    }
+
+    public void clickHrefButton(String buttonName) {
+        String selectorButtonWithHref = "//a[contains(text(),'"+ buttonName+"')]";
+        WebElement buttonWithHref = chromeDriver.findElement(By.xpath(selectorButtonWithHref));
+        buttonWithHref.click();
     }
 }

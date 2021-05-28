@@ -15,11 +15,9 @@ public class Steps {
 
     @Step
     public static void searchItem(SearchResultAutomationPractice searchResultPage, String itemToSearch, String buttonName){
-
         searchResultPage.search(itemToSearch);
         Allure.addAttachment("screenSearch", new ByteArrayInputStream(((TakesScreenshot) searchResultPage.getChromeDriver()).getScreenshotAs(OutputType.BYTES)));
-        searchResultPage.clickButton(buttonName);
-
+        searchResultPage.clickSubmitButton(buttonName);
     }
 
     @Step
