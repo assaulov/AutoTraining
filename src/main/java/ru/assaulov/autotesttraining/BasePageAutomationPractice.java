@@ -3,6 +3,8 @@ package ru.assaulov.autotesttraining;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 
@@ -36,5 +38,13 @@ public class BasePageAutomationPractice {
         String selectorButtonWithHref = "//a[contains(text(),'"+ buttonName+"')]";
         WebElement buttonWithHref = chromeDriver.findElement(By.xpath(selectorButtonWithHref));
         buttonWithHref.click();
+    }
+
+    public void chooseItemToCard(String itemName, String buttonName){
+        String selectorItemCard = "//li//div[@class='product-container' and .//a[contains(.,'"+itemName+"')]]";
+        String selectorButton = "//a[@title='"+buttonName+"']";
+        Actions actions = new Actions(chromeDriver);
+        WebElement itemCart = chromeDriver.findElement(By.xpath(selectorItemCard));
+        actions.moveToElement(itemCart).moveToElement(chromeDriver.findElement(By.xpath(selectorButton))).click().build().perform();
     }
 }
