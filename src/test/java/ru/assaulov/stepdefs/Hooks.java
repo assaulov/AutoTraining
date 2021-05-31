@@ -48,9 +48,9 @@ public class Hooks {
         webDriverWait = new WebDriverWait(chromeDriver,30);
     }
 
-    @After
+   /* @After
     public void laptopsTearDown()
     {
         chromeDriver.quit();
-    }
+    }*/
 }

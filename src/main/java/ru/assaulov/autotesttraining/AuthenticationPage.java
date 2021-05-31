@@ -27,6 +27,9 @@ public class AuthenticationPage extends BasePageAutomationPractice {
 
     public void inputDataInField(String formName, String fieldName, String data){
         String selectorField = String.format("//form[contains(*,'%s')]//label[contains(text(), '%s')]/following-sibling::input", formName, fieldName);
+        if(formName.equalsIgnoreCase("already registered?")&&fieldName.equalsIgnoreCase("password")){
+            selectorField = String.format("//form[contains(*,'%s')]//label[contains(text(), '%s')]/..//input", formName ,fieldName);
+        }
         WebElement inputField = chromeDriver.findElement(By.xpath(selectorField));
         inputField.sendKeys(data);
         inputField.click();
