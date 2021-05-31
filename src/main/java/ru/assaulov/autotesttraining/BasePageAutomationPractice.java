@@ -5,7 +5,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.nio.channels.Selector;
 
 
 public class BasePageAutomationPractice {
@@ -45,6 +48,12 @@ public class BasePageAutomationPractice {
         String selectorButton = "//a[@title='"+buttonName+"']";
         Actions actions = new Actions(chromeDriver);
         WebElement itemCart = chromeDriver.findElement(By.xpath(selectorItemCard));
-        actions.moveToElement(itemCart).moveToElement(chromeDriver.findElement(By.xpath(selectorButton))).click().build().perform();
+        WebElement button = chromeDriver.findElement(By.xpath(selectorItemCard+selectorButton));
+        actions.moveToElement(itemCart).moveToElement(button).click().build().perform();
+    }
+
+    public WebElement itemSuccessAddedToCart(){
+        String cartSelector = "(//div[@class='clearfix'])[1]";
+        return new WebDriverWait(chromeDriver,10).until(ExpectedConditions.visibilityOf(chromeDriver.findElement(By.xpath(cartSelector))));
     }
 }

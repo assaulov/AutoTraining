@@ -2,8 +2,9 @@ package ru.assaulov.stepdefs;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.WebElement;
 import ru.assaulov.autotesttraining.BasePageAutomationPractice;
-import ru.assaulov.steps.AddItemSteps;
 
 public class AddItemStepDefs {
 
@@ -15,6 +16,8 @@ public class AddItemStepDefs {
     }
 
     @Then("Появится сообщение {string}")
-    public void появитсяСообщениеProductSuccessfullyAddedToYourShoppingCart() {
+    public void появитсяСообщениеProductSuccessfullyAddedToYourShoppingCart(String message) {
+    WebElement cart = basePageAutomationPractice.itemSuccessAddedToCart();
+    Assertions.assertTrue(cart.getText().contains(message));
     }
 }
