@@ -23,6 +23,7 @@ public class CreateAccountPage extends AuthenticationPage{
             return namePage;
         return null;
     }
+
     public void setGender(String gender){
         String selectorGenderRadioButton = "//form[contains(*,'Your personal information')]//div[@class='radio-inline']//input[@value="+defineGender(gender)+"]";
         WebElement genderButton = chromeDriver.findElement(By.xpath(selectorGenderRadioButton));

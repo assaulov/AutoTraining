@@ -6,6 +6,8 @@ import ru.assaulov.autotesttraining.CreateAccountPage;
 import ru.assaulov.entities.UserAddress;
 import ru.assaulov.entities.UserData;
 
+import java.util.Locale;
+
 public class RegistrationSteps {
 
     @Step
@@ -17,13 +19,13 @@ public class RegistrationSteps {
     @Step
     public static void isRightPageOpen(CreateAccountPage accountPage, String expectedPage){
         String actualPage = accountPage.getNamePage().getText();
-        Assertions.assertEquals(expectedPage, actualPage);
+        Assertions.assertEquals(expectedPage.toLowerCase(), actualPage.toLowerCase());
     }
 
     @Step
     public static void isCreatePageOpen(CreateAccountPage accountPage, String expectedPage){
         String actualPage = accountPage.getCreatePage().getText();
-        Assertions.assertEquals(expectedPage, actualPage);
+        Assertions.assertEquals(expectedPage.toLowerCase(), actualPage.toLowerCase());
     }
 
     @Step

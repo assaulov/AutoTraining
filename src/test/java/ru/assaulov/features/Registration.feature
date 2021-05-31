@@ -14,7 +14,7 @@ Feature: Регистрация нового пользователя на са�
     Then Откроется страница 'CREATE AN ACCOUNT'  с полями для ввода
     When Заполнить поля 'Your personal information' следующими данными:
     |Title|First name|Last name|         Email          |Password   |Date of Birth|
-    | Mr. | Mark     | Avrelii | merk1.avr@frnla.com    | 12345     | 1.1.1971    |
+    | Mr. | Mark     | Avrelii | merk2.avr@frnla.com    | 12345     | 1.1.1971    |
     When Ввести в поля 'Your personal information' следующими данными:
     |  Company       |  Address        |City      | State | Zip/Postal Code | Country        | Mobile phone |Assign an address alias for future reference|
     |  Some Company  |  some street 1  |City Name | Alabama | 12345         | United States  | 999999999    |My address                                  |
