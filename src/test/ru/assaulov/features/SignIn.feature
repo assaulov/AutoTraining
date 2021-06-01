@@ -12,5 +12,5 @@ Feature: Вход существущим пользователем
           |    Email address     | Password |
           | merk3.avr@frnla.com  | 12345    |
         When Нажать на кнопку 'Sign in'
-        Then Открается страница 'My account'
+        Then Откроется страница 'My account'
 

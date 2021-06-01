@@ -12,12 +12,11 @@ public class SignInStepDefs {
     AuthenticationPage authenticationPage = new AuthenticationPage(Hooks.getChromeDriver(),30);
 
     @When("В поля формы {string} ввести ввести данные из таблицы:")
-    public void вПоляФормыALREADYREGISTEREDВвестиEmailAddressИPasswordВвестиДанные(String formName, DataTable data) {
-        List<List<String>> form = data.asLists();
-        List<String> field = form.get(0);
-        List<String> dataInput = form.get(1);
-        for (int i = 0; i <= field.size()-1; i++) {
-            authenticationPage.inputDataInField(formName, field.get(i), dataInput.get(i));
+    public void enterDataSignInForm(String formName, DataTable data) {
+        List<List<String>> rows = data.asLists();
+        for (int i = 0, j = 0; (i <= rows.get(0).size() - 1 && j <= rows.get(1).size() - 1); i++, j++) {
+            String field = rows.get(0).get(i);
+            authenticationPage.inputDataInField(formName, field, rows.get(1).get(j));
         }
     }
 }
