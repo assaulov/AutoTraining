@@ -10,7 +10,7 @@ Feature: Вход существущим пользователем
     Scenario: Вход в систему
       When В поля формы 'Already registered?' ввести ввести данные из таблицы:
           |    Email address     | Password |
-          | merk2.avr@frnla.com  | 12345    |
+          | merk3.avr@frnla.com  | 12345    |
         When Нажать на кнопку 'Sign in'
         Then Открается страница 'My account'
 

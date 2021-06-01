@@ -18,7 +18,7 @@ import java.util.Map;
 public class RegistrationStepDefs {
 
    private final CreateAccountPage accountPage = new CreateAccountPage(Hooks.getChromeDriver(), 30);
-   private final UserData user = new UserData();
+   private UserData user = new UserData();
    private final UserAddress address = new UserAddress();
 
     @When("Нажать кнопку {string}")
@@ -52,17 +52,18 @@ public class RegistrationStepDefs {
     }
 
     @When("Заполнить поля {string} следующими данными:")
-    public void заполнитьПоляYOURPERSONALINFORMATIONСледующимиДанными(String formName , DataTable userData) {
-        user.setTitle(userData.cell(1,0));
-        user.setFirstName(userData.cell(1,1));
-        user.setLastName(userData.cell(1,2));
-        user.setPassword(userData.cell(1,4));
-        user.setDateOfBirth(userData.cell(1,5));
-        RegistrationSteps.setGender(accountPage, user);
-        RegistrationSteps.setFirstName(accountPage, formName,"First name" ,user);
-        RegistrationSteps.setLastName(accountPage, formName, "Last name",user);
-        RegistrationSteps.setPassword(accountPage, formName, "Password",user);
-        RegistrationSteps.setDateOfBirth(accountPage, user);
+    public void inputUserData(String formName , DataTable userData) {
+        List<List<String>> rows = userData.asLists();
+        for (int i = 0, j=0; (i <=rows.get(0).size()-1 && j<=rows.get(1).size()-1); i++, j++) {
+           String field = rows.get(0).get(i);
+            if(field.equals("Title")){
+                accountPage.setGender(rows.get(1).get(0));
+            } else if(field.equals("Date of Birth")){
+                accountPage.setDateOfBirth(rows.get(1).get(1));
+        } else {
+                accountPage.inputDataInField(formName, field, rows.get(1).get(j));
+            }
+        }
         Allure.addAttachment("YOURPERSONALINFORMATION", new ByteArrayInputStream(((TakesScreenshot) Hooks.getChromeDriver()).getScreenshotAs(OutputType.BYTES)));
     }
 

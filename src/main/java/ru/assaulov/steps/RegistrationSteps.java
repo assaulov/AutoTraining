@@ -33,6 +33,11 @@ public class RegistrationSteps {
         accountPage.clickSubmitButton(buttonName);
     }
 
+   @Step
+   public static void setData(CreateAccountPage accountPage, UserData user){
+
+   }
+
     @Step
     public static void setGender(CreateAccountPage accountPage, UserData user){
         accountPage.setGender(user.getTitle());
