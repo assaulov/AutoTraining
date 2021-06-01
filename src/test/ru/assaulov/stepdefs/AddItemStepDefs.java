@@ -11,12 +11,12 @@ public class AddItemStepDefs {
   BasePageAutomationPractice basePageAutomationPractice = new BasePageAutomationPractice(Hooks.getChromeDriver(), 30);
 
    @When("Навести курсор на карточку с товаром {string} и нажать на кнопку {string}")
-    public void навестиКурсорНаКарточкуСТоваромBlouseИНажатьНаКнопкуAddToCart(String itemName, String buttonName) {
+    public void chooseItemToCart(String itemName, String buttonName) {
     basePageAutomationPractice.chooseItemToCard(itemName,buttonName);
     }
 
     @Then("Появится сообщение {string}")
-    public void появитсяСообщениеProductSuccessfullyAddedToYourShoppingCart(String message) {
+    public void isItemAddedToCart(String message) {
     WebElement cart = basePageAutomationPractice.itemSuccessAddedToCart();
     Assertions.assertTrue(cart.getText().contains(message));
     }

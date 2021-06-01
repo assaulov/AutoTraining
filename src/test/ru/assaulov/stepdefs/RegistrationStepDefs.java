@@ -56,7 +56,7 @@ public class RegistrationStepDefs {
             }
         }
 
-            Allure.addAttachment("YOURPERSONALINFORMATION", new ByteArrayInputStream(((TakesScreenshot) Hooks.getChromeDriver()).getScreenshotAs(OutputType.BYTES)));
+        Allure.addAttachment("YOURPERSONALINFORMATION", new ByteArrayInputStream(((TakesScreenshot) Hooks.getChromeDriver()).getScreenshotAs(OutputType.BYTES)));
 
     }
 
@@ -67,7 +67,6 @@ public class RegistrationStepDefs {
         }
         isRightPageOpen(namePage, accountPage.getNamePage());
     }
-
 
     private void isRightPageOpen(String expectedPage, WebElement page) {
         String actualPage = page.getText();
