@@ -3,8 +3,12 @@ package ru.assaulov.stepdefs;
 
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.When;
+import io.qameta.allure.Allure;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import ru.assaulov.autotesttraining.AuthenticationPage;
 
+import java.io.ByteArrayInputStream;
 import java.util.List;
 
 public class SignInStepDefs {
@@ -18,5 +22,7 @@ public class SignInStepDefs {
             String field = rows.get(0).get(i);
             authenticationPage.inputDataInField(formName, field, rows.get(1).get(j));
         }
+        Allure.addAttachment("SignInFields", new ByteArrayInputStream(((TakesScreenshot) Hooks.getChromeDriver()).getScreenshotAs(OutputType.BYTES)));
+
     }
 }

@@ -9,7 +9,7 @@ Feature: Регистрация нового пользователя на са�
     Then Откроется страница 'AUTHENTICATION'
     When В разделе 'Create an account' ввести e-mail в поле 'Email address' для регистрации
       |         Email         |
-      |  antonina.antonova2@foxy.com  |
+      |  antonina.antonova3@foxy.com  |
     When Нажать на кнопку 'Create an account'
     Then Откроется страница 'CREATE AN ACCOUNT'
     When Заполнить поля 'Your personal information' следующими данными:

@@ -53,10 +53,10 @@ public class RegistrationStepDefs {
                     break;
                 default:
                     accountPage.inputDataInField(formName, field, rows.get(1).get(j));
+                    Allure.addAttachment("DataFields", new ByteArrayInputStream(((TakesScreenshot) Hooks.getChromeDriver()).getScreenshotAs(OutputType.BYTES)));
             }
         }
 
-        Allure.addAttachment("YOURPERSONALINFORMATION", new ByteArrayInputStream(((TakesScreenshot) Hooks.getChromeDriver()).getScreenshotAs(OutputType.BYTES)));
 
     }
 
@@ -70,6 +70,7 @@ public class RegistrationStepDefs {
 
     private void isRightPageOpen(String expectedPage, WebElement page) {
         String actualPage = page.getText();
+        Allure.addAttachment(actualPage, new ByteArrayInputStream(((TakesScreenshot) Hooks.getChromeDriver()).getScreenshotAs(OutputType.BYTES)));
         Assertions.assertEquals(expectedPage.toLowerCase(), actualPage.toLowerCase());
     }
 
