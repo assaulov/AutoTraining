@@ -4,51 +4,48 @@ import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.qameta.allure.Allure;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import ru.assaulov.autotesttraining.CreateAccountPage;
-import ru.assaulov.entities.UserAddress;
-import ru.assaulov.entities.UserData;
-import ru.assaulov.steps.RegistrationSteps;
 
 import java.io.ByteArrayInputStream;
 import java.util.List;
-import java.util.Map;
 
 public class RegistrationStepDefs {
 
    private final CreateAccountPage accountPage = new CreateAccountPage(Hooks.getChromeDriver(), 30);
-   private final UserData user = new UserData();
-   private final UserAddress address = new UserAddress();
 
     @When("Нажать кнопку {string}")
     public void нажатьКнопкуSignIn(String buttonName) {
-        RegistrationSteps.pushSignInButton(accountPage, buttonName);
+
+        accountPage.clickHrefButton(buttonName);
     }
 
     @Then("Откроется страница {string}")
     public void откроетсяСтраницаAuthentication(String namePage) {
-        RegistrationSteps.isRightPageOpen(accountPage, namePage);
+        String actualPage = accountPage.getNamePage().getText();
+        Assertions.assertEquals(namePage.toLowerCase(), actualPage.toLowerCase());
     }
 
     @When("В разделе {string} ввести e-mail в поле {string} для регистрации")
     public void вРазделеCREATEANACCOUNTВвестиEMailВПолеEmailAddressДляРегистрации(String formName, String fieldName, DataTable tableMail) {
         String email = tableMail.asList().get(1);
-        user.setEmail(email);
-        RegistrationSteps.setEmail(accountPage, formName,fieldName, user);
+        accountPage.inputDataInField(formName,fieldName, email);
     }
 
     @When("Нажать на кнопку {string}")
     public void нажатьНаКнопкуCreateAnAccount(String buttonName) {
-        RegistrationSteps.clickCreateAnAccountButton(accountPage, buttonName);
+        accountPage.clickSubmitButton(buttonName);
     }
 
     @Then("Откроется страница {string}  с полями для ввода")
     public void откроетсяСтраницаCREATEANACCOUNTСПолямиДляВвода(String namePage) {
         if(namePage.equals("CREATE AN ACCOUNT")) {
-            RegistrationSteps.isCreatePageOpen(accountPage,namePage);
-        }
-        RegistrationSteps.isRightPageOpen(accountPage, namePage);
+            String actualPage = accountPage.getCreatePage().getText();
+            Assertions.assertEquals(namePage.toLowerCase(), actualPage.toLowerCase());        }
+        String actualPage = accountPage.getNamePage().getText();
+        Assertions.assertEquals(namePage.toLowerCase(), actualPage.toLowerCase());
     }
 
     @When("Заполнить поля {string} следующими данными:")
@@ -88,8 +85,10 @@ public class RegistrationStepDefs {
 
     @Then("Открается страница {string}")
     public void откраетсяСтраницаMyAccount(String namePage) {
-        RegistrationSteps.isRightPageOpen(accountPage, namePage);
+        String actualPage = accountPage.getNamePage().getText();
+        Assertions.assertEquals(namePage.toLowerCase(), actualPage.toLowerCase());
     }
+
 
 
 }
