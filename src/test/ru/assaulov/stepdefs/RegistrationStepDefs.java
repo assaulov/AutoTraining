@@ -53,7 +53,7 @@ public class RegistrationStepDefs {
                     break;
                 default:
                     accountPage.inputDataInField(formName, field, rows.get(1).get(j));
-                    Allure.addAttachment("DataFields", new ByteArrayInputStream(((TakesScreenshot) Hooks.getChromeDriver()).getScreenshotAs(OutputType.BYTES)));
+                    Allure.addAttachment(field, new ByteArrayInputStream(((TakesScreenshot) Hooks.getChromeDriver()).getScreenshotAs(OutputType.BYTES)));
             }
         }
 
