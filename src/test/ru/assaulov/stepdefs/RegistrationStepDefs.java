@@ -36,35 +36,27 @@ public class RegistrationStepDefs {
     @When("Заполнить поля {string} следующими данными:")
     public void inputUserData(String formName , DataTable userData) {
         List<List<String>> rows = userData.asLists();
-        for (int i = 0, j=0; (i <=rows.get(0).size()-1 && j<=rows.get(1).size()-1); i++, j++) {
-           String field = rows.get(0).get(i);
-            if(field.equals("Title")){
-                accountPage.setGender(rows.get(1).get(0));
-            } else if(field.equals("Date of Birth")){
-                accountPage.setDateOfBirth(rows.get(1).get(1));
-        } else {
-
-                accountPage.inputDataInField(formName, field, rows.get(1).get(j));
-            }
-        }
-        Allure.addAttachment("YOURPERSONALINFORMATION", new ByteArrayInputStream(((TakesScreenshot) Hooks.getChromeDriver()).getScreenshotAs(OutputType.BYTES)));
-    }
-
-    @When("Ввести в поля {string} следующими данными:")
-    public void inputAddressData(String formName, DataTable addressData) {
-        List<List<String>> rows = addressData.asLists();
-        for (int i = 0, j=0; (i <=rows.get(0).size()-1 && j<=rows.get(1).size()-1); i++, j++) {
+        for (int i = 0, j = 0; (i <= rows.get(0).size() - 1 && j <= rows.get(1).size() - 1); i++, j++) {
             String field = rows.get(0).get(i);
-            if(field.equals("State")){
-                accountPage.setState(rows.get(1).get(3));
-            } else if(field.equals("Country")){
-                accountPage.setCountry(rows.get(1).get(5));
-            } else {
-                accountPage.inputDataInField(formName, field, rows.get(1).get(j));
+            switch (field) {
+                case "Title":
+                    accountPage.setGender(rows.get(1).get(0));
+                    break;
+                case "Date of Birth":
+                    accountPage.setDateOfBirth(rows.get(1).get(1));
+                    break;
+                case "State":
+                    accountPage.setState(rows.get(1).get(3));
+                    break;
+                case "Country":
+                    accountPage.setCountry(rows.get(1).get(5));
+                    break;
+                default:
+                    accountPage.inputDataInField(formName, field, rows.get(1).get(j));
             }
         }
 
-        Allure.addAttachment("YOURADDRESSС", new ByteArrayInputStream(((TakesScreenshot) Hooks.getChromeDriver()).getScreenshotAs(OutputType.BYTES)));
+            Allure.addAttachment("YOURPERSONALINFORMATION", new ByteArrayInputStream(((TakesScreenshot) Hooks.getChromeDriver()).getScreenshotAs(OutputType.BYTES)));
 
     }
 

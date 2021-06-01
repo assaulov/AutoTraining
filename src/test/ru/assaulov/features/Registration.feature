@@ -14,8 +14,8 @@ Feature: Регистрация нового пользователя на са�
     Then Откроется страница 'CREATE AN ACCOUNT'
     When Заполнить поля 'Your personal information' следующими данными:
     |Title|Date of Birth|First name|Last name |   Password   |
-    | Mrs.|  15.3.1995  |Antonina |Antonova   |    12345      |
-    When Ввести в поля 'Your personal information' следующими данными:
+    | Mrs.|  15.3.1995  |Antonina | Antonova   |    12345      |
+    When Заполнить поля 'Your personal information' следующими данными:
     |  Company       |  Address        |City      | State | Zip/Postal Code | Country        | Mobile phone |Assign an address alias for future reference|
     |  Some Company  |  some street 2  |City Name | Alabama | 12345         | United States  | 999999999    |Home                                 |
     When Нажать на кнопку 'Register'
