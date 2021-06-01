@@ -7,6 +7,7 @@ import io.qameta.allure.Allure;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebElement;
 import ru.assaulov.autotesttraining.CreateAccountPage;
 
 import java.io.ByteArrayInputStream;
@@ -24,8 +25,7 @@ public class RegistrationStepDefs {
 
     @Then("Откроется страница {string}")
     public void откроетсяСтраницаAuthentication(String namePage) {
-        String actualPage = accountPage.getNamePage().getText();
-        Assertions.assertEquals(namePage.toLowerCase(), actualPage.toLowerCase());
+        isRightPageOpen(namePage, accountPage.getNamePage());
     }
 
     @When("В разделе {string} ввести e-mail в поле {string} для регистрации")
@@ -42,10 +42,9 @@ public class RegistrationStepDefs {
     @Then("Откроется страница {string}  с полями для ввода")
     public void откроетсяСтраницаCREATEANACCOUNTСПолямиДляВвода(String namePage) {
         if(namePage.equals("CREATE AN ACCOUNT")) {
-            String actualPage = accountPage.getCreatePage().getText();
-            Assertions.assertEquals(namePage.toLowerCase(), actualPage.toLowerCase());        }
-        String actualPage = accountPage.getNamePage().getText();
-        Assertions.assertEquals(namePage.toLowerCase(), actualPage.toLowerCase());
+            isRightPageOpen(namePage, accountPage.getCreatePage());
+        }
+        isRightPageOpen(namePage, accountPage.getNamePage());
     }
 
     @When("Заполнить поля {string} следующими данными:")
@@ -85,10 +84,14 @@ public class RegistrationStepDefs {
 
     @Then("Открается страница {string}")
     public void откраетсяСтраницаMyAccount(String namePage) {
-        String actualPage = accountPage.getNamePage().getText();
-        Assertions.assertEquals(namePage.toLowerCase(), actualPage.toLowerCase());
+        isRightPageOpen(namePage, accountPage.getNamePage());
     }
 
+
+    private void isRightPageOpen(String expectedPage, WebElement page) {
+        String actualPage = page.getText();
+        Assertions.assertEquals(expectedPage.toLowerCase(), actualPage.toLowerCase());
+    }
 
 
 }
