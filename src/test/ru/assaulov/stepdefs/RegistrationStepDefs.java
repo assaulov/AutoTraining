@@ -18,7 +18,7 @@ import java.util.Map;
 public class RegistrationStepDefs {
 
    private final CreateAccountPage accountPage = new CreateAccountPage(Hooks.getChromeDriver(), 30);
-   private UserData user = new UserData();
+   private final UserData user = new UserData();
    private final UserAddress address = new UserAddress();
 
     @When("Нажать кнопку {string}")
@@ -61,6 +61,7 @@ public class RegistrationStepDefs {
             } else if(field.equals("Date of Birth")){
                 accountPage.setDateOfBirth(rows.get(1).get(1));
         } else {
+
                 accountPage.inputDataInField(formName, field, rows.get(1).get(j));
             }
         }
@@ -69,22 +70,18 @@ public class RegistrationStepDefs {
 
     @When("Ввести в поля {string} следующими данными:")
     public void заполнитьПоляYOURADDRESSСледующимиДанными(String formName, DataTable addressData) {
-        address.setCompany(addressData.cell(1,0));
-        address.setAddress(addressData.cell(1,1));
-        address.setCity(addressData.cell(1,2));
-        address.setState(addressData.cell(1,3));
-        address.setZipCode(addressData.cell(1,4));
-        address.setCountry(addressData.cell(1,5));
-        address.setMobilePhone(addressData.cell(1,6));
-        address.setAddressAlias(addressData.cell(1,7));
-        RegistrationSteps.setCompany(accountPage, formName,"Company", address);
-        RegistrationSteps.setAddress(accountPage, formName,"Address", address);
-        RegistrationSteps.setCity(accountPage, formName,"City", address);
-        RegistrationSteps.setState(accountPage,address);
-        RegistrationSteps.setZipCode(accountPage, formName,"Zip/Postal Code", address);
-        RegistrationSteps.setCountry(accountPage, address);
-        RegistrationSteps.setMobilePhone(accountPage, formName,"Mobile phone", address);
-        RegistrationSteps.setAlias(accountPage, formName,"Assign an address alias for future reference", address);
+        List<List<String>> rows = addressData.asLists();
+        for (int i = 0, j=0; (i <=rows.get(0).size()-1 && j<=rows.get(1).size()-1); i++, j++) {
+            String field = rows.get(0).get(i);
+            if(field.equals("State")){
+                accountPage.setState(rows.get(1).get(3));
+            } else if(field.equals("Country")){
+                accountPage.setCountry(rows.get(1).get(5));
+            } else {
+                accountPage.inputDataInField(formName, field, rows.get(1).get(j));
+            }
+        }
+
         Allure.addAttachment("YOURADDRESSС", new ByteArrayInputStream(((TakesScreenshot) Hooks.getChromeDriver()).getScreenshotAs(OutputType.BYTES)));
 
     }
