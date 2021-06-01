@@ -1,6 +1,7 @@
 package ru.assaulov.autotesttraining;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -31,6 +32,9 @@ public class AuthenticationPage extends BasePageAutomationPractice {
             selectorField = String.format("//form[contains(*,'%s')]//label[contains(text(), '%s')]/..//input", formName ,fieldName);
         }
         WebElement inputField = chromeDriver.findElement(By.xpath(selectorField));
+        if(!inputField.getAttribute("value").isEmpty()){
+            inputField.sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+        }
         inputField.sendKeys(data);
         inputField.click();
     }

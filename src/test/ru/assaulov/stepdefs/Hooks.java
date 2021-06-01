@@ -2,15 +2,19 @@ package ru.assaulov.stepdefs;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.Scenario;
+import io.qameta.allure.Allure;
+
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+
 import java.util.concurrent.TimeUnit;
 
 public class Hooks {
@@ -29,16 +33,6 @@ public class Hooks {
     @Before
     public void settings() throws IOException {
 
-        Files.walk(Paths.get("D:\\Education\\Test Automation\\AutoTraining\\allure-report"))
-                .filter(Files::isRegularFile)
-                .map(Path::toFile)
-                .forEach(File::delete);
-
-        Files.walk(Paths.get("D:\\Education\\Test Automation\\AutoTraining\\allure-results"))
-                .filter(Files::isRegularFile)
-                .map(Path::toFile)
-                .forEach(File::delete);
-
         System.setProperty("webdriver.chrome.driver", System.getenv("CHROME_DRIVER"));
         chromeDriver= new ChromeDriver();
         chromeDriver.manage().window().maximize();
@@ -48,9 +42,15 @@ public class Hooks {
         webDriverWait = new WebDriverWait(chromeDriver,30);
     }
 
-   /* @After
-    public void laptopsTearDown()
+
+    @After
+    public void laptopsTearDown(Scenario scenario)
     {
+        if(scenario.isFailed())
+        {
+            Allure.addAttachment("Failed!", new ByteArrayInputStream(((TakesScreenshot) chromeDriver).getScreenshotAs(OutputType.BYTES)));
+        }
         chromeDriver.quit();
-    }*/
+    }
+
 }

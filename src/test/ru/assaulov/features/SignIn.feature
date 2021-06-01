@@ -9,8 +9,8 @@ Feature: Вход существущим пользователем
     @signin
     Scenario: Вход в систему
       When В поля формы 'Already registered?' ввести ввести данные из таблицы:
-          |    Email address     | Password |
-          | merk2.avr@frnla.com  | 12345    |
+          |    Email address            | Password |
+          | antonina.antonova3@foxy.com | 12345    |
         When Нажать на кнопку 'Sign in'
-        Then Открается страница 'My account'
+        Then Откроется страница 'My account'
 

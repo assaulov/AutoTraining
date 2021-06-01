@@ -6,8 +6,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import ru.assaulov.autotesttraining.AuthenticationPage;
 
-public class CreateAccountPage extends AuthenticationPage{
+public class CreateAccountPage extends AuthenticationPage {
 
 
 
